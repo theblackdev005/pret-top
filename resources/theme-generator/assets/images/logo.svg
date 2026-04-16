@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="357"
+   height="76"
+   viewBox="0 0 94.456247 20.108334"
+   version="1.1"
+   id="svg8"
+   inkscape:export-filename="C:\wamp64\www\htdocs\laravel-finances\public\assets\images\logo.png"
+   inkscape:export-xdpi="134"
+   inkscape:export-ydpi="134"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="logo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs2">
+    <linearGradient
+       id="color-11251121723"
+       gradientUnits="userSpaceOnUse"
+       y2="235"
+       x2="485"
+       y1="235"
+       x1="65">
+      <stop
+         id="stop815"
+         stop-color="#f04393"
+         offset="0" />
+      <stop
+         id="stop817"
+         stop-color="#f9c449"
+         offset="1" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.5686275"
+     inkscape:cx="179.77499"
+     inkscape:cy="-1.59375"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:pagecheckerboard="true"
+     inkscape:showpageshadow="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:deskcolor="#d1d1d1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-276.89165)">
+    <text
+       xml:space="preserve"
+       style="font-size:24.9768px;fill:#ff0000;stroke-width:2.0814"
+       x="8.4724789"
+       y="309.10422"
+       id="text1"
+       transform="scale(1.045579,0.95640788)"><tspan
+         sodipodi:role="line"
+         id="tspan1"
+         style="stroke-width:2.0814;fill:#ff0000"
+         x="8.4724789"
+         y="309.10422">LOGO</tspan></text>
+  </g>
+</svg>

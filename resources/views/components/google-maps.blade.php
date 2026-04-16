@@ -1,0 +1,1 @@
+<iframe src="https://maps.google.com/maps?q={{ SITE_ADDRESS }}&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
