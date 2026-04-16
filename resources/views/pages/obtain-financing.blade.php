@@ -319,10 +319,10 @@
                 <div class="loan-hero">
                     <h1>{{ translate(473) }}</h1>
 
-                    <div class="loan-hero-notice">
+                    {{-- <div class="loan-hero-notice">
                         <div class="loan-hero-notice-title">{{ translate(375) }}</div>
                         <p class="loan-hero-notice-text">{{ translate(475) }}</p>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <form action="{{ routeWithLocale('site.obtain_financing') }}" method="post" id="loanForm">
@@ -540,12 +540,12 @@
                                 </div>
                             </div>
 
-                            <div class="loan-checkbox-wrap">
+                            {{-- <div class="loan-checkbox-wrap">
                                 <label for="fees_notice">
                                     <input id="fees_notice" type="checkbox">
                                     <span>{{ translate(472) }}</span>
                                 </label>
-                            </div>
+                            </div> --}}
                         </section>
                     </div>
 
