@@ -202,9 +202,9 @@
     <div class="section-title">{{ __('TRAD_420') }}</div>
     <div class="box">
         <strong>{{ __('TRAD_421') }}</strong><br>
-        {{ __('TRAD_585') }}<br>
-        {{ __('TRAD_586') }}<br>
-        {{ __('TRAD_587') }}<br><br>
+        {{ SITE_NAME }}<br>
+        {{ SITE_ADDRESS }}<br>
+        {{ SITE_EMAIL }}<br><br>
 
         <strong>{{ __('TRAD_422') }}</strong><br>
         {{ $nomComplet }}<br>

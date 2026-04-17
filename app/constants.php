@@ -1,15 +1,15 @@
 <?php
 
 define('CHAT_API_KEY', '');
-define('DEFAULT_SITE_LANGUAGE', 'fr');
+define('DEFAULT_SITE_LANGUAGE', 'pt');
 define('ALLOW_WEBPAGE_LOADER', false);
 
-define('SITE_NAME', 'Optivest');
-define('WEBSITE_CREATED_DATE', '2018-2025');
-define('SITE_ADDRESS', 'optivestgroup.com');
+define('SITE_NAME', 'Optivest Financiamento®');
+define('WEBSITE_CREATED_DATE', '2025-2025');
+define('SITE_ADDRESS', 'Trebbin, Markt 1-3 14959 Trebbin Deutschland');
 
-define('SITE_EMAIL', 'noreply@optivestgroup.com');
-define('SITE_PHONE', '+32460226774');
+define('SITE_EMAIL', 'info@optivestgroup.com');
+define('SITE_PHONE', '+351913555786');
 define('SITE_PHONE_2', '');
 
 define('WEBMASTER_NAME', 'Cosimo Mick');
