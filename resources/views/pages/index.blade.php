@@ -391,41 +391,6 @@
 	</div>
 	<!-- Faq End -->
 
-	<!-- Testimonial Section Start -->
-	<div id="rs-testimonial" class="rs-testimonial testimonial-style1 bg4 pt-120 pb-115 md-pt-80 md-pb-75">
-	    <div class="container">
-	    	<div class="sec-title mb-45">
-	    		<h2 class="title text-theme">{{ translate(82) }}</h2>
-	    		<p class="ti0tle col-lg-6">{{ translate(83) }}</p>
-	    	</div>
-	       	<div class="rs-carousel owl-carousel" data-loop="true" data-items="2" data-margin="30" data-autoplay="true" data-hoverpause="true" data-autoplay-timeout="5000" data-smart-speed="800" data-dots="false" data-nav="false" data-nav-speed="false" data-center-mode="false" data-mobile-device="1" data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device="2" data-ipad-device-nav="false" data-ipad-device-dots="true" data-ipad-device2="2" data-ipad-device-nav2="false" data-ipad-device-dots2="true" data-md-device="2" data-md-device-nav="false" data-md-device-dots="true">
-	    		@foreach (testimonials() as $testimonial)
-		    		<div class="testi-item">
-		    			<div class="testi-wrap">
-		    				<div class="item-content-basic">
-		    					<span>
-		    						<img src="{{ asset_img('testimonial/style1/quote.png') }}">
-		    					</span>
-		    					<p>{{ translate($testimonial['comment']) }}</p>
-		    				</div>
-		    				<div class="testi-content">
-		    					<div class="image-wrap">
-		    						<img src="{{ $testimonial['avatar'] }}">
-		    					</div>
-			                    <div class="testi-information">
-		                            <div class="testi-name">{{ $testimonial['name'] }}</div>
-		                            <span class="designation">{{ translate($testimonial['country']) }}</span>
-		                        </div>
-		    				</div>
-		    			</div>
-		    		</div>
-	    		@endforeach
-
-	       	</div>
-	    </div>
-	</div>
-	<!-- Testimonial Section End -->
-
 	<!-- Blog Section Start -->
 	<div id="rs-blog" class="rs-blog blog-main-home pt-120 pb-115 md-pt-80 md-pb-75">
 	    <div class="container">  
