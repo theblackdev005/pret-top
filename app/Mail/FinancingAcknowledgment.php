@@ -29,6 +29,7 @@ class FinancingAcknowledgment extends Mailable
                 'fullname' => $this->data['name'],
                 'financing' => $this->data['financing'],
                 'request_id' => $this->data['request_id'] ?? '',
+                'complete_financing_url' => $this->data['complete_financing_url'] ?? null,
             ]);
     }
     

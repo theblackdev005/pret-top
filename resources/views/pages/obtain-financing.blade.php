@@ -186,6 +186,31 @@
             justify-content: center;
         }
 
+        .loan-phone-input {
+            flex-wrap: nowrap;
+        }
+
+        .loan-phone-input .input-group-prepend {
+            flex: 0 0 auto;
+        }
+
+        .loan-phone-code-select {
+            width: 112px;
+            height: 50px;
+            border: 1px solid #e5e7eb;
+            border-right: 0;
+            border-radius: 8px 0 0 8px;
+            background-color: #f8fafc;
+            color: #0f172a;
+            font-weight: 700;
+            padding: 0 8px;
+            text-align: center;
+        }
+
+        .loan-phone-input .form-control {
+            min-width: 0;
+        }
+
         .loan-field-label {
             display: block;
             font-size: 14px;
@@ -307,6 +332,12 @@
                 height: 46px;
                 font-size: 13px;
             }
+
+            .loan-phone-code-select {
+                width: 98px;
+                font-size: 13px;
+                padding: 0 4px;
+            }
         }
     </style>
 
@@ -316,13 +347,173 @@
                 <x-alert only="success"></x-alert>
                 <x-alert only="error"></x-alert>
 
+                @php
+                    $loanLocale = app()->getLocale();
+                    $loanPageTexts = [
+                        'financing_tag' => [
+                            'de' => 'Finanzierung',
+                            'el' => 'Χρηματοδότηση',
+                            'en' => 'Financing',
+                            'es' => 'Financiación',
+                            'it' => 'Finanziamento',
+                            'pl' => 'Finansowanie',
+                            'pt' => 'Financiamento',
+                        ],
+                        'instant_calculation' => [
+                            'de' => '✔ Sofortige Berechnung ohne Verpflichtung',
+                            'el' => '✔ Άμεσος υπολογισμός χωρίς δέσμευση',
+                            'en' => '✔ Immediate calculation with no obligation',
+                            'es' => '✔ Cálculo inmediato sin compromiso',
+                            'it' => '✔ Calcolo immediato senza impegno',
+                            'pl' => '✔ Natychmiastowa kalkulacja bez zobowiązań',
+                            'pt' => '✔ Cálculo imediato sem compromisso',
+                        ],
+                        'identity_tag' => [
+                            'de' => 'Identität',
+                            'el' => 'Ταυτότητα',
+                            'en' => 'Identity',
+                            'es' => 'Identidad',
+                            'it' => 'Identità',
+                            'pl' => 'Tożsamość',
+                            'pt' => 'Identidade',
+                        ],
+                        'identity_subtitle' => [
+                            'de' => 'Vervollständigen Sie Ihre Angaben, damit wir Ihre Akte validieren können.',
+                            'el' => 'Συμπληρώστε τα στοιχεία σας ώστε να μπορέσουμε να επικυρώσουμε τον φάκελό σας.',
+                            'en' => 'Complete your information so we can validate your file.',
+                            'es' => 'Complete sus datos para que podamos validar su expediente.',
+                            'it' => 'Completa i tuoi dati affinché possiamo convalidare la tua pratica.',
+                            'pl' => 'Uzupełnij swoje dane, abyśmy mogli zweryfikować Twoją sprawę.',
+                            'pt' => 'Preencha os seus dados para que possamos validar o seu processo.',
+                        ],
+                        'amount_error' => [
+                            'de' => 'Wählen Sie einen gültigen Betrag aus.',
+                            'el' => 'Επιλέξτε ένα έγκυρο ποσό.',
+                            'en' => 'Select a valid amount.',
+                            'es' => 'Seleccione un importe válido.',
+                            'it' => 'Seleziona un importo valido.',
+                            'pl' => 'Wybierz prawidłową kwotę.',
+                            'pt' => 'Selecione um montante válido.',
+                        ],
+                        'duration_error' => [
+                            'de' => 'Wählen Sie die Laufzeit Ihres Darlehens aus.',
+                            'el' => 'Επιλέξτε τη διάρκεια του δανείου σας.',
+                            'en' => 'Select your loan duration.',
+                            'es' => 'Seleccione la duración de su préstamo.',
+                            'it' => 'Seleziona la durata del tuo prestito.',
+                            'pl' => 'Wybierz okres spłaty pożyczki.',
+                            'pt' => 'Selecione a duração do seu empréstimo.',
+                        ],
+                        'country_placeholder' => [
+                            'de' => 'Wählen Sie Ihr Land',
+                            'el' => 'Επιλέξτε τη χώρα σας',
+                            'en' => 'Choose your country',
+                            'es' => 'Elija su país',
+                            'it' => 'Scegli il tuo Paese',
+                            'pl' => 'Wybierz swój kraj',
+                            'pt' => 'Escolha o seu país',
+                        ],
+                        'phone_prefix_placeholder' => [
+                            'de' => 'Vorwahl',
+                            'el' => 'Κωδικός',
+                            'en' => 'Code',
+                            'es' => 'Prefijo',
+                            'it' => 'Prefisso',
+                            'pl' => 'Numer kier.',
+                            'pt' => 'Indicativo',
+                        ],
+                        'phone_prefix_label' => [
+                            'de' => 'Telefonvorwahl',
+                            'el' => 'Τηλεφωνικός κωδικός',
+                            'en' => 'Phone code',
+                            'es' => 'Prefijo telefónico',
+                            'it' => 'Prefisso telefonico',
+                            'pl' => 'Kierunkowy',
+                            'pt' => 'Indicativo telefónico',
+                        ],
+                    ];
+                    $loanPageText = fn ($key, $fallback) => $loanPageTexts[$key][$loanLocale] ?? $fallback;
+                    $loanNumberLocale = [
+                        'de' => 'de-DE',
+                        'el' => 'el-GR',
+                        'en' => 'en-GB',
+                        'es' => 'es-ES',
+                        'it' => 'it-IT',
+                        'pl' => 'pl-PL',
+                        'pt' => 'pt-PT',
+                    ][$loanLocale] ?? 'fr-FR';
+                    $countryFieldValue = old('financing.adresse_pays', '');
+                    $phoneDialCountries = [
+                        ['iso' => 'AL', 'name' => 'Albania', 'country_value' => 'Albania', 'dial_code' => '+355', 'flag' => '🇦🇱'],
+                        ['iso' => 'AD', 'name' => 'Andorra', 'country_value' => 'Andorra', 'dial_code' => '+376', 'flag' => '🇦🇩'],
+                        ['iso' => 'AM', 'name' => 'Armenia', 'country_value' => 'Armenia', 'dial_code' => '+374', 'flag' => '🇦🇲'],
+                        ['iso' => 'AT', 'name' => 'Austria', 'country_value' => 'Austria', 'dial_code' => '+43', 'flag' => '🇦🇹'],
+                        ['iso' => 'BY', 'name' => 'Belarus', 'country_value' => 'Belarus', 'dial_code' => '+375', 'flag' => '🇧🇾'],
+                        ['iso' => 'BE', 'name' => 'Belgium', 'country_value' => 'Belgium', 'dial_code' => '+32', 'flag' => '🇧🇪'],
+                        ['iso' => 'BJ', 'name' => 'Benin', 'country_value' => null, 'dial_code' => '+229', 'flag' => '🇧🇯'],
+                        ['iso' => 'BA', 'name' => 'Bosnia and Herzegovina', 'country_value' => 'Bosnia and Herzegovina', 'dial_code' => '+387', 'flag' => '🇧🇦'],
+                        ['iso' => 'BG', 'name' => 'Bulgaria', 'country_value' => 'Bulgaria', 'dial_code' => '+359', 'flag' => '🇧🇬'],
+                        ['iso' => 'CM', 'name' => 'Cameroon', 'country_value' => null, 'dial_code' => '+237', 'flag' => '🇨🇲'],
+                        ['iso' => 'CA', 'name' => 'Canada', 'country_value' => null, 'dial_code' => '+1', 'flag' => '🇨🇦'],
+                        ['iso' => 'HR', 'name' => 'Croatia', 'country_value' => 'Croatia (Hrvatska)', 'dial_code' => '+385', 'flag' => '🇭🇷'],
+                        ['iso' => 'CY', 'name' => 'Cyprus', 'country_value' => 'Cyprus', 'dial_code' => '+357', 'flag' => '🇨🇾'],
+                        ['iso' => 'CZ', 'name' => 'Czech Republic', 'country_value' => 'Czech Republic', 'dial_code' => '+420', 'flag' => '🇨🇿'],
+                        ['iso' => 'DK', 'name' => 'Denmark', 'country_value' => 'Denmark', 'dial_code' => '+45', 'flag' => '🇩🇰'],
+                        ['iso' => 'EE', 'name' => 'Estonia', 'country_value' => 'Estonia', 'dial_code' => '+372', 'flag' => '🇪🇪'],
+                        ['iso' => 'FI', 'name' => 'Finland', 'country_value' => 'Finland', 'dial_code' => '+358', 'flag' => '🇫🇮'],
+                        ['iso' => 'FR', 'name' => 'France', 'country_value' => 'France', 'dial_code' => '+33', 'flag' => '🇫🇷'],
+                        ['iso' => 'GE', 'name' => 'Georgia', 'country_value' => 'Georgia', 'dial_code' => '+995', 'flag' => '🇬🇪'],
+                        ['iso' => 'DE', 'name' => 'Germany', 'country_value' => 'Germany', 'dial_code' => '+49', 'flag' => '🇩🇪'],
+                        ['iso' => 'GR', 'name' => 'Greece', 'country_value' => 'Greece', 'dial_code' => '+30', 'flag' => '🇬🇷'],
+                        ['iso' => 'HU', 'name' => 'Hungary', 'country_value' => 'Hungary', 'dial_code' => '+36', 'flag' => '🇭🇺'],
+                        ['iso' => 'IS', 'name' => 'Iceland', 'country_value' => 'Iceland', 'dial_code' => '+354', 'flag' => '🇮🇸'],
+                        ['iso' => 'IE', 'name' => 'Ireland', 'country_value' => 'Ireland', 'dial_code' => '+353', 'flag' => '🇮🇪'],
+                        ['iso' => 'IT', 'name' => 'Italy', 'country_value' => 'Italy', 'dial_code' => '+39', 'flag' => '🇮🇹'],
+                        ['iso' => 'CI', 'name' => 'Ivory Coast', 'country_value' => null, 'dial_code' => '+225', 'flag' => '🇨🇮'],
+                        ['iso' => 'JE', 'name' => 'Jersey', 'country_value' => 'Jersey', 'dial_code' => '+44', 'flag' => '🇯🇪'],
+                        ['iso' => 'LV', 'name' => 'Latvia', 'country_value' => 'Latvia', 'dial_code' => '+371', 'flag' => '🇱🇻'],
+                        ['iso' => 'LI', 'name' => 'Liechtenstein', 'country_value' => 'Liechtenstein', 'dial_code' => '+423', 'flag' => '🇱🇮'],
+                        ['iso' => 'LT', 'name' => 'Lithuania', 'country_value' => 'Lithuania', 'dial_code' => '+370', 'flag' => '🇱🇹'],
+                        ['iso' => 'LU', 'name' => 'Luxembourg', 'country_value' => 'Luxembourg', 'dial_code' => '+352', 'flag' => '🇱🇺'],
+                        ['iso' => 'MK', 'name' => 'Macedonia', 'country_value' => 'Macedonia', 'dial_code' => '+389', 'flag' => '🇲🇰'],
+                        ['iso' => 'MT', 'name' => 'Malta', 'country_value' => 'Malta', 'dial_code' => '+356', 'flag' => '🇲🇹'],
+                        ['iso' => 'MD', 'name' => 'Moldova', 'country_value' => 'Moldova, Republic of', 'dial_code' => '+373', 'flag' => '🇲🇩'],
+                        ['iso' => 'MC', 'name' => 'Monaco', 'country_value' => 'Monaco', 'dial_code' => '+377', 'flag' => '🇲🇨'],
+                        ['iso' => 'ME', 'name' => 'Montenegro', 'country_value' => 'Montenegro', 'dial_code' => '+382', 'flag' => '🇲🇪'],
+                        ['iso' => 'MA', 'name' => 'Morocco', 'country_value' => null, 'dial_code' => '+212', 'flag' => '🇲🇦'],
+                        ['iso' => 'NL', 'name' => 'Netherlands', 'country_value' => 'Netherlands', 'dial_code' => '+31', 'flag' => '🇳🇱'],
+                        ['iso' => 'NG', 'name' => 'Nigeria', 'country_value' => null, 'dial_code' => '+234', 'flag' => '🇳🇬'],
+                        ['iso' => 'NO', 'name' => 'Norway', 'country_value' => 'Norway', 'dial_code' => '+47', 'flag' => '🇳🇴'],
+                        ['iso' => 'PL', 'name' => 'Poland', 'country_value' => 'Poland', 'dial_code' => '+48', 'flag' => '🇵🇱'],
+                        ['iso' => 'PT', 'name' => 'Portugal', 'country_value' => 'Portugal', 'dial_code' => '+351', 'flag' => '🇵🇹'],
+                        ['iso' => 'RO', 'name' => 'Romania', 'country_value' => 'Romania', 'dial_code' => '+40', 'flag' => '🇷🇴'],
+                        ['iso' => 'RU', 'name' => 'Russian Federation', 'country_value' => 'Russian Federation', 'dial_code' => '+7', 'flag' => '🇷🇺'],
+                        ['iso' => 'SM', 'name' => 'San Marino', 'country_value' => 'San Marino', 'dial_code' => '+378', 'flag' => '🇸🇲'],
+                        ['iso' => 'SN', 'name' => 'Senegal', 'country_value' => null, 'dial_code' => '+221', 'flag' => '🇸🇳'],
+                        ['iso' => 'RS', 'name' => 'Serbia', 'country_value' => 'Serbia', 'dial_code' => '+381', 'flag' => '🇷🇸'],
+                        ['iso' => 'SK', 'name' => 'Slovakia', 'country_value' => 'Slovakia', 'dial_code' => '+421', 'flag' => '🇸🇰'],
+                        ['iso' => 'SI', 'name' => 'Slovenia', 'country_value' => 'Slovenia', 'dial_code' => '+386', 'flag' => '🇸🇮'],
+                        ['iso' => 'ES', 'name' => 'Spain', 'country_value' => 'Spain', 'dial_code' => '+34', 'flag' => '🇪🇸'],
+                        ['iso' => 'SE', 'name' => 'Sweden', 'country_value' => 'Sweden', 'dial_code' => '+46', 'flag' => '🇸🇪'],
+                        ['iso' => 'CH', 'name' => 'Switzerland', 'country_value' => 'Switzerland', 'dial_code' => '+41', 'flag' => '🇨🇭'],
+                        ['iso' => 'TG', 'name' => 'Togo', 'country_value' => null, 'dial_code' => '+228', 'flag' => '🇹🇬'],
+                        ['iso' => 'TN', 'name' => 'Tunisia', 'country_value' => null, 'dial_code' => '+216', 'flag' => '🇹🇳'],
+                        ['iso' => 'TR', 'name' => 'Turkey', 'country_value' => 'Turkey', 'dial_code' => '+90', 'flag' => '🇹🇷'],
+                        ['iso' => 'UA', 'name' => 'Ukraine', 'country_value' => 'Ukraine', 'dial_code' => '+380', 'flag' => '🇺🇦'],
+                        ['iso' => 'AE', 'name' => 'United Arab Emirates', 'country_value' => null, 'dial_code' => '+971', 'flag' => '🇦🇪'],
+                        ['iso' => 'GB', 'name' => 'United Kingdom', 'country_value' => 'United Kingdom', 'dial_code' => '+44', 'flag' => '🇬🇧'],
+                        ['iso' => 'US', 'name' => 'United States', 'country_value' => null, 'dial_code' => '+1', 'flag' => '🇺🇸'],
+                        ['iso' => 'VA', 'name' => 'Vatican City State', 'country_value' => 'Vatican City State', 'dial_code' => '+39', 'flag' => '🇻🇦'],
+                    ];
+                @endphp
+
                 <div class="loan-hero">
                     <h1>{{ translate(473) }}</h1>
 
-                    {{-- <div class="loan-hero-notice">
+                    <div class="loan-hero-notice">
                         <div class="loan-hero-notice-title">{{ translate(375) }}</div>
                         <p class="loan-hero-notice-text">{{ translate(475) }}</p>
-                    </div> --}}
+                    </div>
                 </div>
 
                 <form action="{{ routeWithLocale('site.obtain_financing') }}" method="post" id="loanForm">
@@ -333,7 +524,7 @@
                     <div class="loan-grid">
                         <section class="loan-card">
                             <span class="loan-mini-tag">
-                                {{ app()->getLocale() === 'es' ? 'Financiación' : 'Financement' }}
+                                {{ $loanPageText('financing_tag', 'Financement') }}
                             </span>
 
                             <h3 class="loan-card-title">{{ translate(450) }}</h3>
@@ -388,9 +579,7 @@
                                         <span class="loan-live-label">{{ translate(478) }}</span>
                                         <div class="loan-live-value" id="liveMensualite">—</div>
                                         <p style="font-size:13px;color:#16a34a;font-weight:600;margin-top:6px;margin-bottom:0;">
-                                            {{ app()->getLocale() === 'es'
-                                                ? '✔ Cálculo inmediato sin compromiso'
-                                                : '✔ Calcul immédiat sans engagement' }}
+                                            {{ $loanPageText('instant_calculation', '✔ Calcul immédiat sans engagement') }}
                                         </p>
                                     </div>
 
@@ -410,15 +599,13 @@
 
                         <section class="loan-card">
                             <span class="loan-mini-tag">
-                                {{ app()->getLocale() === 'es' ? 'Identidad' : 'Identité' }}
+                                {{ $loanPageText('identity_tag', 'Identité') }}
                             </span>
 
                             <h3 class="loan-card-title">{{ translate(455) }}</h3>
 
                             <p class="loan-card-subtitle">
-                                {{ app()->getLocale() === 'es'
-                                    ? 'Complete sus datos para que podamos validar su expediente.'
-                                    : 'Complétez vos informations afin que nous puissions valider votre dossier.' }}
+                                {{ $loanPageText('identity_subtitle', 'Complétez vos informations afin que nous puissions valider votre dossier.') }}
                             </p>
 
                             <div class="form-group">
@@ -454,12 +641,28 @@
                             </div>
 
                             <div class="form-group">
-                                <x-form-select
-                                    :options="$countries"
-                                    selectLabel="{{ translate(460) }}"
-                                    name="financing.adresse_pays"
-                                    :defaultValue="old('financing.adresse_pays', $countries[0]['code'] ?? ($countries[42] ?? ''))"
-                                />
+                                <label for="address-country" class="form-label">{{ translate(460) }}</label>
+
+                                <select
+                                    class="form-control @error('financing.adresse_pays') is-invalid @enderror"
+                                    name="financing[adresse_pays]"
+                                    id="address-country"
+                                    required
+                                >
+                                    <option value="" disabled {{ $countryFieldValue === '' ? 'selected' : '' }}>
+                                        {{ $loanPageText('country_placeholder', 'Choisir votre pays') }}
+                                    </option>
+
+                                    @foreach ($countries as $country)
+                                        <option value="{{ $country }}" {{ $countryFieldValue === $country ? 'selected="selected"' : '' }}>
+                                            {{ $country }}
+                                        </option>
+                                    @endforeach
+                                </select>
+
+                                @error('financing.adresse_pays')
+                                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                @enderror
                             </div>
 
                             <div class="loan-divider"></div>
@@ -481,10 +684,31 @@
                             <div class="form-group">
                                 <label class="loan-field-label">{{ translate(463) }}</label>
 
-                                <div class="input-group">
+                                <div class="input-group loan-phone-input">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="country-code">+</span>
+                                        <select
+                                            id="phone-country-code"
+                                            class="loan-phone-code-select"
+                                            aria-label="{{ $loanPageText('phone_prefix_label', 'Indicatif téléphonique') }}"
+                                            required
+                                        >
+                                            <option value="" disabled selected>
+                                                {{ $loanPageText('phone_prefix_placeholder', 'Indicatif') }}
+                                            </option>
+
+                                            @foreach ($phoneDialCountries as $phoneCountry)
+                                                <option
+                                                    value="{{ $phoneCountry['iso'] }}"
+                                                    data-iso="{{ $phoneCountry['iso'] }}"
+                                                    data-dial-code="{{ $phoneCountry['dial_code'] }}"
+                                                    data-country-value="{{ $phoneCountry['country_value'] }}"
+                                                >
+                                                    {{ $phoneCountry['flag'] }} {{ $phoneCountry['dial_code'] }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
+
                                     <input
                                         type="tel"
                                         inputmode="numeric"
@@ -540,12 +764,12 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="loan-checkbox-wrap">
+                            <div class="loan-checkbox-wrap">
                                 <label for="fees_notice">
-                                    <input id="fees_notice" type="checkbox">
+                                    <input id="fees_notice" name="fees_notice" type="checkbox" required>
                                     <span>{{ translate(472) }}</span>
                                 </label>
-                            </div> --}}
+                            </div>
                         </section>
                     </div>
 
@@ -563,9 +787,10 @@
 
     <x-rs-cta></x-rs-cta>
 
-   <script>
+    <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const prefixEl = document.getElementById('country-code');
+        const countrySelect = document.getElementById('address-country');
+        const phoneCountrySelect = document.getElementById('phone-country-code');
         const visiblePhone = document.getElementById('visible-phone');
         const realPhone = document.getElementById('real-phone');
         const geoCity = document.getElementById('geoCity');
@@ -586,6 +811,10 @@
         const defaultSubmitText = submitBtn ? submitBtn.innerText : '';
 
         const tauxAnnuel = 3.75;
+        const phoneDialCountries = @json($phoneDialCountries);
+        const countryOptions = countrySelect ? Array.from(countrySelect.options) : [];
+        let countryWasTouched = Boolean(countrySelect && countrySelect.value);
+        let phoneWasTouched = Boolean(realPhone && realPhone.value.trim());
 
         function getCurrentAmount() {
             return parseFloat(amountHidden.value);
@@ -596,10 +825,116 @@
         }
 
         function formatEuro(value) {
-            return new Intl.NumberFormat('{{ app()->getLocale() === "es" ? "es-ES" : "fr-FR" }}', {
+            return new Intl.NumberFormat(@json($loanNumberLocale), {
                 style: 'currency',
                 currency: 'EUR'
             }).format(value);
+        }
+
+        function normalizeCountry(value) {
+            return String(value || '')
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase()
+                .trim();
+        }
+
+        function getSelectedDialCode() {
+            if (!phoneCountrySelect || !phoneCountrySelect.selectedOptions.length) {
+                return '';
+            }
+
+            return phoneCountrySelect.selectedOptions[0].dataset.dialCode || '';
+        }
+
+        function syncPhone() {
+            if (!realPhone || !visiblePhone) return;
+
+            const prefix = getSelectedDialCode();
+            const number = visiblePhone.value.trim();
+
+            realPhone.value = prefix && number ? `${prefix} ${number}` : number;
+        }
+
+        function selectPhoneCountry(dialCode, isoCode) {
+            if (!phoneCountrySelect) return false;
+
+            const options = Array.from(phoneCountrySelect.options).filter(option => option.value);
+            const normalizedDialCode = String(dialCode || '').replace(/\s+/g, '');
+            const normalizedIsoCode = String(isoCode || '').toUpperCase();
+            let option = null;
+
+            if (normalizedIsoCode) {
+                option = options.find(item => item.dataset.iso === normalizedIsoCode);
+            }
+
+            if (!option && normalizedDialCode) {
+                option = options.find(item => item.dataset.dialCode === normalizedDialCode);
+            }
+
+            if (!option) {
+                return false;
+            }
+
+            phoneCountrySelect.value = option.value;
+            return true;
+        }
+
+        function hydratePhoneFromHidden() {
+            if (!realPhone || !visiblePhone || !realPhone.value.trim()) {
+                return;
+            }
+
+            const rawPhone = realPhone.value.trim();
+            const compactPhone = rawPhone.replace(/[^\d+]/g, '');
+            const phoneDigits = rawPhone.replace(/\D/g, '');
+            const sortedCountries = phoneDialCountries
+                .slice()
+                .sort((a, b) => b.dial_code.length - a.dial_code.length);
+
+            const detectedCountry = sortedCountries.find(country => {
+                const dialCode = country.dial_code.replace(/\s+/g, '');
+                const dialDigits = dialCode.replace(/\D/g, '');
+
+                return compactPhone.startsWith(dialCode) || phoneDigits.startsWith(dialDigits);
+            });
+
+            if (!detectedCountry) {
+                visiblePhone.value = rawPhone;
+                return;
+            }
+
+            selectPhoneCountry(detectedCountry.dial_code, detectedCountry.iso);
+
+            const dialDigits = detectedCountry.dial_code.replace(/\D/g, '');
+            const localDigits = phoneDigits.startsWith(dialDigits)
+                ? phoneDigits.slice(dialDigits.length)
+                : phoneDigits;
+
+            visiblePhone.value = localDigits.replace(/(\d{2})(?=\d)/g, '$1 ').trim();
+            syncPhone();
+        }
+
+        function setCountryFromGeo(data) {
+            if (!countrySelect || countryWasTouched || countrySelect.value) {
+                return;
+            }
+
+            const isoCode = String(data.country_code || data.country_code_iso2 || '').toUpperCase();
+            const countryFromIso = phoneDialCountries.find(country => country.iso === isoCode);
+            const detectedCountry = (countryFromIso && countryFromIso.country_value)
+                ? countryFromIso.country_value
+                : data.country_name;
+
+            if (!detectedCountry) {
+                return;
+            }
+
+            const option = countryOptions.find(item => normalizeCountry(item.value) === normalizeCountry(detectedCountry));
+
+            if (option) {
+                countrySelect.value = option.value;
+            }
         }
 
         function pulseValue(el) {
@@ -680,12 +1015,37 @@
             });
         });
 
+        if (countrySelect) {
+            countrySelect.addEventListener('change', function () {
+                countryWasTouched = true;
+            });
+        }
+
+        if (phoneCountrySelect) {
+            phoneCountrySelect.addEventListener('change', function () {
+                phoneWasTouched = true;
+                syncPhone();
+            });
+        }
+
+        if (visiblePhone) {
+            visiblePhone.addEventListener('input', syncPhone);
+        }
+
+        hydratePhoneFromHidden();
+
         fetch('https://ipapi.co/json/')
             .then(res => res.json())
             .then(data => {
-                if (data.country_calling_code && prefixEl) {
-                    prefixEl.textContent = data.country_calling_code;
+                const isoCode = String(data.country_code || data.country_code_iso2 || '').toUpperCase();
+
+                if (data.country_calling_code && phoneCountrySelect && !phoneWasTouched && !phoneCountrySelect.value) {
+                    selectPhoneCountry(data.country_calling_code, isoCode);
+                    syncPhone();
                 }
+
+                setCountryFromGeo(data);
+
                 if (geoCity) geoCity.value = data.city || '';
                 if (geoCountry) geoCountry.value = data.country_name || '';
                 if (geoRegion) geoRegion.value = data.region || '';
@@ -701,12 +1061,7 @@
             form.dataset.submitted = 'true';
             lockSubmitButton();
 
-            const prefix = prefixEl.textContent.trim();
-            const number = visiblePhone.value.trim();
-
-            if (prefix && number) {
-                realPhone.value = prefix + ' ' + number;
-            }
+            syncPhone();
 
             const montant = getCurrentAmount();
             const duree = getCurrentDuree();
@@ -727,7 +1082,7 @@
                 montantErrorEl = document.createElement('div');
                 montantErrorEl.id = montantErrorId;
                 montantErrorEl.className = 'alert alert-danger mt-2';
-                montantErrorEl.textContent = '{{ app()->getLocale() === "es" ? "Seleccione un importe válido." : "Sélectionnez un montant valide." }}';
+                montantErrorEl.textContent = @json($loanPageText('amount_error', 'Sélectionnez un montant valide.'));
                 document.getElementById('amountGrid').insertAdjacentElement('afterend', montantErrorEl);
                 window.scrollTo({
                     top: document.getElementById('amountGrid').getBoundingClientRect().top + window.scrollY - 120,
@@ -743,7 +1098,7 @@
                 dureeErrorEl = document.createElement('div');
                 dureeErrorEl.id = dureeErrorId;
                 dureeErrorEl.className = 'alert alert-danger mt-2';
-                dureeErrorEl.textContent = '{{ app()->getLocale() === "es" ? "Seleccione la duración de su préstamo." : "Sélectionnez la durée de votre prêt." }}';
+                dureeErrorEl.textContent = @json($loanPageText('duration_error', 'Sélectionnez la durée de votre prêt.'));
                 document.getElementById('durationGrid').insertAdjacentElement('afterend', dureeErrorEl);
                 window.scrollTo({
                     top: document.getElementById('durationGrid').getBoundingClientRect().top + window.scrollY - 120,

@@ -140,6 +140,18 @@
     @endif
 </div>
 
+@if(!empty($complete_financing_url))
+    <div style="margin:0 0 24px 0;padding:16px;background:#eff6ff;border:1px solid #bfdbfe;">
+        <div style="font-size:13px;color:#1d4ed8;font-weight:700;margin-bottom:8px;">
+            Lien de complétion du dossier
+        </div>
+        <a href="{{ $complete_financing_url }}"
+           style="color:#2563eb;font-weight:700;text-decoration:none;word-break:break-all;">
+            {{ $complete_financing_url }}
+        </a>
+    </div>
+@endif
+
 <p style="margin:0 0 12px 0;font-size:16px;line-height:1.5;font-weight:700;color:#111111;">
     📋 Détails complets
 </p>

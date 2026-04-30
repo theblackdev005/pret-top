@@ -75,6 +75,7 @@ if ( ! function_exists('str_replacing') ) {
 		$return = str_ireplace("(AUTHOR_NAME)",AUTHOR_NAME, $return);
 		$return = str_ireplace("(AUTHOR_EMAIL)",'<a href="mailto:'.SITE_EMAIL.'">'.SITE_EMAIL.'</a>', $return);
 		$return = str_ireplace("(TEAG)",TEAG, $return);
+		$return = str_ireplace("(LOAN_PROCESSING_FEE)", LOAN_PROCESSING_FEE, $return);
 		$return = str_ireplace("\\",'<br/>', $return);
 		return $return;
 	}

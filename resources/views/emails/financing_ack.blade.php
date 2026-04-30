@@ -90,6 +90,16 @@
             color: #2563eb;
             text-decoration: none;
         }
+
+        .button {
+            display: inline-block;
+            background: #16a34a;
+            color: #ffffff;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 800;
+            margin: 4px 0 18px;
+        }
     </style>
 </head>
 
@@ -124,6 +134,16 @@
             </div>
 
             <p>{{ translate(550) }}</p>
+
+            @if(!empty($complete_financing_url))
+                <p>{{ translate(505) }}</p>
+
+                <p>
+                    <a class="button" href="{{ $complete_financing_url }}">
+                        {{ translate(504) }}
+                    </a>
+                </p>
+            @endif
 
             <p>
                 {{ translate(552) }}

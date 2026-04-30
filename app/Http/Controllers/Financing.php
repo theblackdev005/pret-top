@@ -12,6 +12,7 @@ use App\Mail\FinancingCompletedAdmin;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Route;
 
 class Financing extends Controller
 {
@@ -51,12 +52,7 @@ class Financing extends Controller
                     $createdAt &&
                     (time() - $createdAt < 120)
                 ) {
-                    return redirect()->route('thankyou')->with([
-                        'nom' => ucfirst(strtolower($financing['prenom'] ?? '')) . ' ' . ucfirst(strtolower($financing['nom'] ?? '')),
-                        'montant' => $financing['montant_du_pret'] ?? '',
-                        'duree' => $financing['duree_totale_du_pret'] ?? '',
-                        'reference' => $requestId,
-                    ]);
+                    return $this->redirectToThankYou($financing, $requestId);
                 }
             }
         }
@@ -102,6 +98,8 @@ class Financing extends Controller
         $adresse_declaree = trim(($financing['adresse_complete'] ?? '') . ', ' . ($financing['adresse_pays'] ?? ''));
         $geo_detectee = trim(($geoCity ?? '') . ', ' . ($geoRegion ?? '') . ', ' . ($geoCountry ?? ''));
 
+        $completeFinancingUrl = $this->completeFinancingUrl(app()->getLocale(), $requestId);
+
         $data = [
             'name' => ($financing['nom'] ?? '') . ' ' . ($financing['prenom'] ?? ''),
             'subject' => translate(329),
@@ -115,6 +113,7 @@ class Financing extends Controller
                 'region' => $geoRegion,
                 'country' => $geoCountry,
             ],
+            'complete_financing_url' => $completeFinancingUrl,
         ];
 
         $payload = [
@@ -129,6 +128,7 @@ class Financing extends Controller
                 'country' => $geoCountry,
             ],
             'mail_data' => $data,
+            'complete_financing_url' => $completeFinancingUrl,
         ];
 
         Storage::disk('local')->put(
@@ -161,12 +161,7 @@ class Financing extends Controller
             );
         }
 
-        return redirect()->route('thankyou')->with([
-            'nom' => ucfirst(strtolower($financing['prenom'] ?? '')) . ' ' . ucfirst(strtolower($financing['nom'] ?? '')),
-            'montant' => $financing['montant_du_pret'] ?? '',
-            'duree' => $financing['duree_totale_du_pret'] ?? '',
-            'reference' => $requestId,
-        ]);
+        return $this->redirectToThankYou($financing, $requestId);
     }
 
     public function approve($requestId)
@@ -387,6 +382,7 @@ class Financing extends Controller
             'identity_front' => $identityFrontPath ?? null,
             'identity_back' => $identityBackPath ?? null,
             'passport' => $passportPath ?? null,
+            'complete_financing_url' => $this->completeFinancingUrl(app()->getLocale(), $payload['request_id'] ?? $reference),
         ];
 
         $this->sendMailWithRetry(
@@ -394,7 +390,7 @@ class Financing extends Controller
             SITE_EMAIL
         );
 
-        return redirect()->route('site.complete_financing.success', [
+        return redirect()->route('site.complete_financing.success.localized', [
             'language' => app()->getLocale(),
         ])->with([
             'request_id' => $payload['request_id'] ?? $reference,
@@ -402,7 +398,36 @@ class Financing extends Controller
         ]);
     }
 
-    private function sendMailWithRetry($mailable, $email, $maxAttempts = 3)
+    private function redirectToThankYou(array $financing, string $requestId)
+    {
+        return redirect()->route('thankyou.localized', [
+            'language' => app()->getLocale(),
+        ])->with([
+            'nom' => ucfirst(strtolower($financing['prenom'] ?? '')) . ' ' . ucfirst(strtolower($financing['nom'] ?? '')),
+            'montant' => $financing['montant_du_pret'] ?? '',
+            'duree' => $financing['duree_totale_du_pret'] ?? '',
+            'reference' => $requestId,
+        ]);
+    }
+
+    private function completeFinancingUrl(string $language, ?string $reference = null): string
+    {
+        $routeName = 'site.complete_financing.' . $language;
+
+        if (!Route::has($routeName)) {
+            $routeName = 'site.complete_financing.generic';
+        }
+
+        $parameters = ['language' => $language];
+
+        if ($reference) {
+            $parameters['reference'] = $reference;
+        }
+
+        return route($routeName, $parameters);
+    }
+
+    private function sendMailWithRetry($mailable, $email, $maxAttempts = 1, $retryDelaySeconds = 0)
     {
         $attempt = 0;
 
@@ -413,7 +438,10 @@ class Financing extends Controller
             } catch (\Exception $e) {
                 \Log::error("Mail attempt {$attempt} failed: " . $e->getMessage());
                 $attempt++;
-                sleep(2);
+
+                if ($attempt < $maxAttempts && $retryDelaySeconds > 0) {
+                    sleep($retryDelaySeconds);
+                }
             }
         }
 

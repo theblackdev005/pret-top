@@ -27,6 +27,13 @@
 
     <p><strong>Document :</strong> {{ $document_type }}</p>
 
+    @if(!empty($complete_financing_url))
+        <p>
+            <strong>Lien dossier :</strong><br>
+            <a href="{{ $complete_financing_url }}">{{ $complete_financing_url }}</a>
+        </p>
+    @endif
+
     <p style="color:#666;font-size:13px;">
         Le document d'identité est joint à cet email.
     </p>

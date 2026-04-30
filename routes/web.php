@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\ValidLanguage;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/admin/loan-requests/approve/{requestId}', [\App\Http\Controllers\Financing::class, 'approve'])
@@ -29,36 +30,41 @@ Route::prefix('/{language}')->middleware([ValidLanguage::class])->group(function
     Route::get('/loans/{type?}', [\App\Http\Controllers\App::class, 'loan_offers'])->name('site.loan_offers');
     Route::get('/insurances/{type?}', [\App\Http\Controllers\App::class, 'assurances'])->name('site.assurances');
     
-    Route::get('/complete-financing', function ($language) {
+    $completeFinancingSlugs = [
+        'fr' => 'mon-dossier',
+        'es' => 'mi-expediente',
+        'it' => 'mio-dossier',
+        'de' => 'mein-dossier',
+        'pt' => 'meu-processo',
+        'pl' => 'moj-wniosek',
+        'el' => 'o-fakelos-mou',
+    ];
 
-    if ($language === 'fr') {
-        return redirect('/fr/mon-dossier');
-    }
+    Route::get('/complete-financing', function (Request $request, $language) use ($completeFinancingSlugs) {
+        $slug = $completeFinancingSlugs[$language] ?? 'complete-financing-form';
+        $query = $request->getQueryString();
 
-    if ($language === 'es') {
-        return redirect('/es/mi-expediente');
-    }
-
-    if ($language === 'it') {
-        return redirect('/it/mio-dossier');
-    }
-
-    if ($language === 'de') {
-        return redirect('/de/mein-dossier');
-    }
-
-    return redirect('/' . $language . '/complete-financing');
-
-});
+        return redirect('/' . $language . '/' . $slug . ($query ? '?' . $query : ''));
+    })->name('site.complete_financing.redirect');
     
-    Route::get('/mon-dossier', [\App\Http\Controllers\Financing::class, 'showCompleteFinancingForm'])
-    ->name('site.complete_financing.fr');
+    foreach ($completeFinancingSlugs as $locale => $slug) {
+        Route::get('/' . $slug, [\App\Http\Controllers\Financing::class, 'showCompleteFinancingForm'])
+            ->name('site.complete_financing.' . $locale);
+    }
 
-Route::get('/mi-expediente', [\App\Http\Controllers\Financing::class, 'showCompleteFinancingForm'])
-    ->name('site.complete_financing.es');
+    Route::get('/complete-financing-form', [\App\Http\Controllers\Financing::class, 'showCompleteFinancingForm'])
+        ->name('site.complete_financing.generic');
 
-Route::post('/complete-financing', [\App\Http\Controllers\Financing::class, 'completeFinancing'])
-    ->name('site.complete_financing.submit');
+    Route::post('/complete-financing', [\App\Http\Controllers\Financing::class, 'completeFinancing'])
+        ->name('site.complete_financing.submit');
+
+    Route::get('/merci', function () {
+        return view('pages.thank-you');
+    })->name('thankyou.localized');
+
+    Route::get('/complete-financing-success', function () {
+        return view('pages.complete_financing_success');
+    })->name('site.complete_financing.success.localized');
 
     Route::get('/test-contract', function () {
         $financing = [

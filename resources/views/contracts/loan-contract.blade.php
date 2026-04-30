@@ -160,7 +160,7 @@
     $numeroContrat = $financing['reference'] ?? '';
     $nomComplet = trim(($financing['prenom'] ?? '') . ' ' . ($financing['nom'] ?? ''));
     $dateContrat = date('d/m/Y');
-    $frais = $financing['frais_traitement'] ?? __('TRAD_432');
+    $frais = $financing['frais_traitement'] ?? LOAN_PROCESSING_FEE;
 @endphp
 
 <div class="header">
