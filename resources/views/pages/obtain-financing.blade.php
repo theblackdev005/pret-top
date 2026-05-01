@@ -3,12 +3,6 @@
 @section('content')
     <x-breadcrumb></x-breadcrumb>
 
-    <script>
-      gtag('event', 'ads_conversion_Pr_sentation_1', {
-        // <event_parameters>
-      });
-    </script>
-
     <style>
         .loan-modern-shell {
             max-width: 1080px;
@@ -512,7 +506,7 @@
 
                     <div class="loan-hero-notice">
                         <div class="loan-hero-notice-title">{{ translate(375) }}</div>
-                        <p class="loan-hero-notice-text">{{ translate(475) }}</p>
+                        <p class="loan-hero-notice-text">{!! translate_with_loan_processing_fee(475) !!}</p>
                     </div>
                 </div>
 
@@ -767,7 +761,7 @@
                             <div class="loan-checkbox-wrap">
                                 <label for="fees_notice">
                                     <input id="fees_notice" name="fees_notice" type="checkbox" required>
-                                    <span>{{ translate(472) }}</span>
+                                    <span>{!! translate_with_loan_processing_fee(472) !!}</span>
                                 </label>
                             </div>
                         </section>

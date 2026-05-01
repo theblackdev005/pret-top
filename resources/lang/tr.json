@@ -238,5 +238,15 @@
     "TRAD_360": "Takip eden dosya var. \u00c7o\u011faltmaya izin vermiyoruz.",
     "TRAD_588": "Yasal bilgiler",
     "TRAD_589": "Tam ad",
-    "TRAD_590": "Kayıt / KDV numarası"
+    "TRAD_590": "Kayıt / KDV numarası",
+    "TRAD_591": "Finansman koşulları",
+    "TRAD_592": "Tutar",
+    "TRAD_593": "3.000 € ile 150.000 € arasında",
+    "TRAD_594": "Süre",
+    "TRAD_595": "12 ila 120 ay",
+    "TRAD_596": "Sabit yıllık maliyet oranı",
+    "TRAD_597": ":rate’den başlayan",
+    "TRAD_598": "Örnek: 48 ay vadeli 10.000 € için, yıllık maliyet oranı 3,75 %, aylık ödeme 224 €, toplam ödenecek tutar: 10.752 €.",
+    "TRAD_599": "Zorunlu işlem ücreti",
+    "TRAD_600": "Kredimi al"
 }

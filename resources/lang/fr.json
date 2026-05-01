@@ -458,5 +458,15 @@
 "TRAD_587": "Email : info@optivestgroup.com",
 "TRAD_588": "Informations légales",
 "TRAD_589": "Nom complet",
-"TRAD_590": "Numéro d'enregistrement / TVA"
+"TRAD_590": "Numéro d'enregistrement / TVA",
+    "TRAD_591": "Conditions de financement",
+    "TRAD_592": "Montant",
+    "TRAD_593": "3 000 € à 150 000 €",
+    "TRAD_594": "Durée",
+    "TRAD_595": "12 à 120 mois",
+    "TRAD_596": "TAEG fixe",
+    "TRAD_597": "à partir de :rate",
+    "TRAD_598": "Exemple : pour 10 000 € sur 48 mois au TAEG de 3,75 %, mensualité de 224 €, montant total dû : 10 752 €.",
+    "TRAD_599": "Frais de traitement obligatoire",
+    "TRAD_600": "Obtenir mon prêt"
 }

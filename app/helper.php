@@ -83,6 +83,49 @@ if ( ! function_exists('str_replacing') ) {
 	}
 }
 
+if ( ! function_exists('format_loan_processing_fee') ) {
+	function format_loan_processing_fee($amount) {
+		$amount = (float) $amount;
+		$decimals = floor($amount) == $amount ? 0 : 2;
+
+		return number_format($amount, $decimals, ',', ' ') . ' ' . LOAN_PROCESSING_FEE_CURRENCY;
+	}
+}
+
+if ( ! function_exists('loan_processing_fee_locale_key') ) {
+	function loan_processing_fee_locale_key($locale = null) {
+		$locale = $locale ?: app()->getLocale();
+		$locale = str_replace('_', '-', mb_strtolower((string) $locale));
+
+		return explode('-', $locale)[0] ?: DEFAULT_SITE_LANGUAGE;
+	}
+}
+
+if ( ! function_exists('loan_processing_fee_amount_for_locale') ) {
+	function loan_processing_fee_amount_for_locale($locale = null) {
+		$localeKey = loan_processing_fee_locale_key($locale);
+		$feesByLocale = defined('LOAN_PROCESSING_FEES_BY_LOCALE') ? LOAN_PROCESSING_FEES_BY_LOCALE : [];
+
+		return (float) ($feesByLocale[$localeKey] ?? LOAN_PROCESSING_FEE_AMOUNT);
+	}
+}
+
+if ( ! function_exists('loan_processing_fee_for_locale') ) {
+	function loan_processing_fee_for_locale($locale = null) {
+		return format_loan_processing_fee(loan_processing_fee_amount_for_locale($locale));
+	}
+}
+
+if ( ! function_exists('translate_with_loan_processing_fee') ) {
+	function translate_with_loan_processing_fee($key, $locale = null) {
+		$fee = '<span data-loan-processing-fee>' . e(loan_processing_fee_for_locale($locale)) . '</span>';
+		$translated = e(__('TRAD_' . $key), false);
+		$translated = str_ireplace('(LOAN_PROCESSING_FEE)', $fee, $translated);
+
+		return str_replacing($translated);
+	}
+}
+
 if ( ! function_exists('legal_notice_information') ) {
 	function legal_notice_information() {
 		$information = [

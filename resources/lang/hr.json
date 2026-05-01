@@ -238,5 +238,15 @@
     "TRAD_360": "Sljede\u0107a datoteka ve\u0107 postoji. Ne dopu\u0161tamo duplikate.",
     "TRAD_588": "Pravne informacije",
     "TRAD_589": "Puni naziv",
-    "TRAD_590": "Registracijski / PDV broj"
+    "TRAD_590": "Registracijski / PDV broj",
+    "TRAD_591": "Uvjeti financiranja",
+    "TRAD_592": "Iznos",
+    "TRAD_593": "3.000 € do 150.000 €",
+    "TRAD_594": "Trajanje",
+    "TRAD_595": "12 do 120 mjeseci",
+    "TRAD_596": "Fiksni EKS",
+    "TRAD_597": "od :rate",
+    "TRAD_598": "Primjer: za 10.000 € na 48 mjeseci uz EKS od 3,75 %, mjesečna rata iznosi 224 €, ukupan iznos za plaćanje: 10.752 €.",
+    "TRAD_599": "Obvezna naknada za obradu",
+    "TRAD_600": "Dobijte moj zajam"
 }

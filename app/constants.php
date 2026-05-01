@@ -17,9 +17,16 @@ define('SITE_PHONE_2', '');
 define('WEBMASTER_NAME', 'Cosimo Mick');
 define('AUTHOR_NAME', 'Elena Gallardo');
 define('TEAG', '3.75%');
+define('GOOGLE_TAG_MANAGER_ID', 'GTM-TP693R6L');
 define('LOAN_PROCESSING_FEE_AMOUNT', 250);
 define('LOAN_PROCESSING_FEE_CURRENCY', '€');
 define('LOAN_PROCESSING_FEE', LOAN_PROCESSING_FEE_AMOUNT . ' ' . LOAN_PROCESSING_FEE_CURRENCY);
+define('LOAN_PROCESSING_FEES_BY_LOCALE', [
+	'fr' => 150,
+	'es' => 90,
+	'el' => 250,
+	'pl' => 200,
+]);
 
 # --------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------

@@ -25,29 +25,6 @@
                         {{ translate(579) }}
                     </p>
 
-                    <a href="{{ routeWithLocale('site.obtain_financing') }}" class="jp-final-btn">
-                        {{ translate(583) }}
-                    </a>
-
-                    <div class="jp-final-actions">
-
-                        <a href="{{ routeWithLocale('site.obtain_financing') }}" class="jp-final-item">
-                            <span class="jp-dot"></span>
-                            <span>{{ translate(580) }}</span>
-                        </a>
-
-                        <a href="{{ routeWithLocale('site.obtain_financing') }}" class="jp-final-item">
-                            <span class="jp-dot"></span>
-                            <span>{{ translate(581) }}</span>
-                        </a>
-
-                        <a href="{{ routeWithLocale('site.obtain_financing') }}" class="jp-final-item">
-                            <span class="jp-dot"></span>
-                            <span>{{ translate(582) }}</span>
-                        </a>
-
-                    </div>
-
                 </div>
             </div>
 
@@ -109,59 +86,6 @@
     max-width:620px;
 }
 
-.jp-final-btn{
-    display:inline-block;
-    background:#b91c1c;
-    color:#fff;
-    padding:14px 28px;
-    border-radius:999px;
-    font-weight:700;
-    margin-bottom:28px;
-    text-decoration:none;
-    transition:.2s ease;
-}
-
-.jp-final-btn:hover{
-    background:#991b1b;
-    color:#fff;
-    transform:translateY(-2px);
-}
-
-.jp-final-actions{
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-    max-width:720px;
-}
-
-.jp-final-item{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    background:rgba(255,255,255,0.94);
-    padding:14px 18px;
-    border-radius:999px;
-    font-weight:600;
-    color:#1e293b;
-    text-decoration:none;
-    transition:.2s ease;
-}
-
-.jp-final-item:hover{
-    transform:translateX(6px);
-    background:#fff;
-    box-shadow:0 8px 20px rgba(0,0,0,0.08);
-    color:#1e293b;
-}
-
-.jp-dot{
-    width:12px;
-    height:12px;
-    min-width:12px;
-    background:#b91c1c;
-    border-radius:50%;
-}
-
 .jp-final-image{
     position:relative;
     z-index:2;
@@ -173,6 +97,110 @@
     max-width:560px;
     border-radius:20px;
     box-shadow:0 18px 40px rgba(0,0,0,0.16);
+}
+
+.jp-financing-conditions{
+    background:linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    padding:82px 0;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.jp-financing-conditions-shell{
+    max-width:1060px;
+    margin:0 auto;
+}
+
+.jp-financing-conditions-kicker{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:#b91c1c;
+    background:#fef2f2;
+    border:1px solid #fee2e2;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:800;
+    padding:7px 12px;
+    margin-bottom:14px;
+}
+
+.jp-financing-conditions-title{
+    color:#0f172a;
+    font-size:36px;
+    line-height:1.15;
+    font-weight:800;
+    margin:0 0 14px;
+}
+
+.jp-financing-conditions-summary{
+    color:#334155;
+    font-size:17px;
+    line-height:1.75;
+    margin:0 0 28px;
+    max-width:920px;
+}
+
+.jp-financing-conditions-summary span{
+    display:inline;
+    margin-right:0;
+}
+
+.jp-financing-conditions-summary strong{
+    color:#0f172a;
+    font-weight:800;
+}
+
+.jp-financing-conditions-card{
+    background:#ffffff;
+    border:1px solid #e5e7eb;
+    border-radius:8px;
+    padding:28px 30px;
+    box-shadow:0 16px 40px rgba(15,23,42,0.07);
+    max-width:860px;
+}
+
+.jp-financing-conditions-example{
+    background:#ecfdf3;
+    border:1px solid #bbf7d0;
+    border-left:4px solid #16a34a;
+    border-radius:8px;
+    color:#14532d;
+    font-size:16px;
+    line-height:1.75;
+    padding:18px 20px;
+    margin-bottom:16px;
+}
+
+.jp-financing-conditions-fee{
+    color:#374151;
+    font-size:16px;
+    line-height:1.7;
+    margin:0 0 22px;
+}
+
+.jp-financing-conditions-fee strong{
+    color:#0f172a;
+}
+
+.jp-financing-conditions-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    background:#b91c1c;
+    color:#fff;
+    padding:14px 24px;
+    border-radius:999px;
+    font-weight:800;
+    text-decoration:none;
+    transition:.2s ease;
+    box-shadow:0 12px 26px rgba(185,28,28,0.18);
+}
+
+.jp-financing-conditions-btn:hover{
+    background:#991b1b;
+    color:#fff;
+    transform:translateY(-2px);
 }
 
 @media (max-width:991px){
@@ -193,6 +221,7 @@
         margin-top:28px;
         text-align:center;
     }
+
 }
 
 @media (max-width:768px){
@@ -200,21 +229,72 @@
         font-size:32px;
     }
 
-    .jp-final-btn{
-        width:100%;
-        text-align:center;
-    }
-
-    .jp-final-item{
-        font-size:15px;
-        padding:14px 16px;
-    }
-
     .jp-final-image img{
         max-width:100%;
     }
+
+    .jp-financing-conditions{
+        padding:48px 0;
+    }
+
+    .jp-financing-conditions-title{
+        font-size:28px;
+    }
+
+    .jp-financing-conditions-summary{
+        font-size:15px;
+    }
+
+    .jp-financing-conditions-card{
+        padding:22px 18px;
+    }
+
+    .jp-financing-conditions-btn{
+        width:100%;
+        text-align:center;
+    }
 }
 </style>
+
+@php
+    $homeDisplayedTeag = preg_replace('/\s*%$/', ' %', str_replace('.', ',', TEAG));
+    $homeRateValue = str_replace(':rate', $homeDisplayedTeag, str_replacing(__('TRAD_597')));
+@endphp
+
+<section class="jp-financing-conditions">
+    <div class="container">
+        <div class="jp-financing-conditions-shell">
+            <div>
+                <span class="jp-financing-conditions-kicker">
+                    <i class="fa fa-check-circle"></i>
+                    {{ translate(591) }}
+                </span>
+
+                <p class="jp-financing-conditions-summary">
+                    <span><strong>{{ translate(592) }} :</strong> {{ translate(593) }}</span>,
+                    <span><strong>{{ translate(594) }} :</strong> {{ translate(595) }}</span>,
+                    <span><strong>{{ translate(596) }}</strong> {{ $homeRateValue }}</span>.
+                </p>
+            </div>
+
+            <div class="jp-financing-conditions-card">
+                <div class="jp-financing-conditions-example">
+                    {{ translate(598) }}
+                </div>
+
+                <p class="jp-financing-conditions-fee">
+                    <strong>{{ translate(599) }} :</strong>
+                    {{ loan_processing_fee_for_locale() }}
+                </p>
+
+                <a href="{{ routeWithLocale('site.obtain_financing') }}" class="jp-financing-conditions-btn">
+                    {{ translate(600) }}
+                    <i class="fa fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 
 	<!-- About Choose Start -->
 	<div class="rs-about about-style1 pt-120 pb-120 md-pb-80">

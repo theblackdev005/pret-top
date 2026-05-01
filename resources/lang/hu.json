@@ -238,5 +238,15 @@
     "TRAD_360": "A k\u00f6vetkez\u0151 f\u00e1jl m\u00e1r l\u00e9tezik. Nem enged\u00e9lyezz\u00fck a duplik\u00e1ci\u00f3t.",
     "TRAD_588": "Jogi információk",
     "TRAD_589": "Teljes név",
-    "TRAD_590": "Nyilvántartási / ÁFA-szám"
+    "TRAD_590": "Nyilvántartási / ÁFA-szám",
+    "TRAD_591": "Finanszírozási feltételek",
+    "TRAD_592": "Összeg",
+    "TRAD_593": "3 000 € és 150 000 € között",
+    "TRAD_594": "Futamidő",
+    "TRAD_595": "12 és 120 hónap között",
+    "TRAD_596": "Fix THM",
+    "TRAD_597": "már :rate-tól",
+    "TRAD_598": "Példa: 10 000 € 48 hónapra, 3,75 % THM mellett, havi törlesztőrészlet 224 €, teljes fizetendő összeg: 10 752 €.",
+    "TRAD_599": "Kötelező feldolgozási díj",
+    "TRAD_600": "Megszerzem a hitelemet"
 }

@@ -84,6 +84,8 @@ class Financing extends Controller
         $financing['montant_total_a_rembourser'] = number_format($montant_total, 2, '.', ' ') . ' €';
         $financing['mensualite_estimee'] = number_format($mensualite, 2, '.', ' ') . ' €';
         $financing['taux_TEAG'] = TEAG;
+        $financing['frais_traitement'] = loan_processing_fee_for_locale(app()->getLocale());
+        $financing['frais_traitement_montant'] = loan_processing_fee_amount_for_locale(app()->getLocale());
 
         $normalize = fn($str) => mb_strtolower(trim(iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $str)));
 

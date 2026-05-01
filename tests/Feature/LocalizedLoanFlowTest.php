@@ -45,9 +45,79 @@ class LocalizedLoanFlowTest extends TestCase
             ->assertSee('id="phone-country-code"', false)
             ->assertSee('data-dial-code="+48"', false)
             ->assertSee('data-dial-code="+30"', false)
-            ->assertSee(LOAN_PROCESSING_FEE, false)
+            ->assertSee(loan_processing_fee_for_locale('pl'), false)
+            ->assertSee('data-loan-processing-fee', false)
             ->assertSee('name="fees_notice"', false)
+            ->assertDontSee('Warunki finansowania', false)
             ->assertDontSee('(LOAN_PROCESSING_FEE)', false);
+    }
+
+    public function test_homepage_shows_financing_conditions_section(): void
+    {
+        $response = $this->get('/fr');
+
+        $response->assertOk()
+            ->assertSee('3 000 € à 150 000 €', false)
+            ->assertSee('12 à 120 mois', false)
+            ->assertSee('TAEG fixe', false)
+            ->assertSee('à partir de 3,75 %', false)
+            ->assertSee('Obtenir mon prêt', false)
+            ->assertSee(loan_processing_fee_for_locale('fr'), false)
+            ->assertDontSee('Demander un financement', false)
+            ->assertDontSee('Déposer votre demande', false)
+            ->assertDontSee('Recevoir une première réponse', false)
+            ->assertDontSee('Transmettre votre dossier', false);
+
+        $this->assertSame(1, substr_count($response->getContent(), 'Conditions de financement'));
+    }
+
+    public function test_google_tracking_tags_are_rendered_from_constants(): void
+    {
+        $response = $this->get('/fr');
+
+        $response->assertOk()
+            ->assertSee(GOOGLE_TAG_MANAGER_ID, false)
+            ->assertSee('googletagmanager.com/gtm.js', false)
+            ->assertSee('googletagmanager.com/ns.html', false)
+            ->assertDontSee('gtag/js', false)
+            ->assertDontSee('AW-17651418820', false)
+            ->assertDontSee('AW-17045015802', false);
+    }
+
+    public function test_financing_conditions_translations_exist_in_language_files(): void
+    {
+        foreach (glob(resource_path('lang/*.json')) as $languageFile) {
+            $translations = json_decode(file_get_contents($languageFile), true);
+
+            $this->assertIsArray($translations, basename($languageFile) . ' must be valid JSON.');
+
+            foreach (range(591, 600) as $translationKey) {
+                $this->assertArrayHasKey('TRAD_' . $translationKey, $translations, basename($languageFile));
+            }
+        }
+    }
+
+    public function test_german_translations_cover_french_keys(): void
+    {
+        $french = json_decode(file_get_contents(resource_path('lang/fr.json')), true);
+        $german = json_decode(file_get_contents(resource_path('lang/de.json')), true);
+
+        $this->assertSame([], array_values(array_diff(array_keys($french), array_keys($german))));
+    }
+
+    public function test_german_pages_do_not_show_translation_keys(): void
+    {
+        $this->get('/de')
+            ->assertOk()
+            ->assertDontSee('TRAD_', false);
+
+        $this->get('/de/obtain-financing')
+            ->assertOk()
+            ->assertDontSee('TRAD_', false);
+
+        $this->get('/de/merci')
+            ->assertOk()
+            ->assertDontSee('TRAD_', false);
     }
 
     public function test_preaccepted_email_does_not_include_complete_dossier_link(): void
@@ -73,6 +143,11 @@ class LocalizedLoanFlowTest extends TestCase
 
         $this->assertStringContainsString(LOAN_PROCESSING_FEE, translate(475));
         $this->assertStringNotContainsString('(LOAN_PROCESSING_FEE)', translate(475));
+        $this->assertSame('150 €', loan_processing_fee_for_locale('fr'));
+        $this->assertSame('90 €', loan_processing_fee_for_locale('es'));
+        $this->assertSame('250 €', loan_processing_fee_for_locale('el'));
+        $this->assertSame('200 €', loan_processing_fee_for_locale('pl'));
+        $this->assertSame(90.0, loan_processing_fee_amount_for_locale('es'));
 
         $html = view('contracts.loan-contract', [
             'financing' => [
@@ -88,10 +163,41 @@ class LocalizedLoanFlowTest extends TestCase
                 'taux_TEAG' => TEAG,
                 'mensualite_estimee' => '216.00 €',
                 'montant_total_a_rembourser' => '5184.00 €',
+                'frais_traitement' => loan_processing_fee_for_locale('fr'),
             ],
         ])->render();
 
-        $this->assertStringContainsString(LOAN_PROCESSING_FEE, $html);
+        $this->assertStringContainsString('Frais de traitement', $html);
+        $this->assertStringContainsString('150 €', $html);
+    }
+
+    public function test_locale_specific_processing_fee_is_saved_with_loan_request(): void
+    {
+        Mail::fake();
+        Storage::fake('local');
+
+        $this->post('/es/obtain-financing', [
+            'financing' => [
+                'montant_du_pret' => '10000',
+                'devise_du_pret' => 'EUR',
+                'duree_totale_du_pret' => 48,
+                'nom' => 'Dubois',
+                'prenom' => 'Claire',
+                'adresse_complete' => 'Rue du Lac 1',
+                'adresse_pays' => 'Spain',
+                'email' => 'claire@example.com',
+                'telephone' => '+34 123456789',
+                'sexe' => 'Mujer',
+            ],
+        ])->assertRedirect('/es/merci');
+
+        $files = Storage::disk('local')->files('loan_requests');
+        $this->assertCount(1, $files);
+
+        $payload = json_decode(Storage::disk('local')->get($files[0]), true);
+
+        $this->assertSame('90 €', $payload['financing']['frais_traitement']);
+        $this->assertEquals(90.0, $payload['financing']['frais_traitement_montant']);
     }
 
     public function test_legal_notice_shows_legal_information_from_constants(): void
