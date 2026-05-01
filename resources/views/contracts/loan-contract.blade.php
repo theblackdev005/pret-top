@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@php
+    $contractText = fn ($key, $replace = []) => str_replacing(__($key, $replace));
+@endphp
 <head>
 <meta charset="UTF-8">
-<title>{{ __('TRAD_412') }}</title>
+<title>{{ $contractText('TRAD_412') }}</title>
 
 <style>
     @page {
@@ -171,7 +174,7 @@
             </td>
             <td>
                 <div class="title-wrap">
-                    <div class="title">{{ __('TRAD_413') }}</div>
+                    <div class="title">{{ $contractText('TRAD_413') }}</div>
                     <div class="contract-no">N° {{ $numeroContrat }}</div>
                 </div>
             </td>
@@ -183,109 +186,109 @@
     <tr>
         <td>
             <div class="panel panel-green">
-                <div class="panel-title">{{ __('TRAD_414') }}</div>
-                {!! nl2br(e(__('TRAD_415', ['name' => $nomComplet]))) !!}
+                <div class="panel-title">{{ $contractText('TRAD_414') }}</div>
+                {!! nl2br(e($contractText('TRAD_415', ['name' => $nomComplet]))) !!}
             </div>
         </td>
         <td>
             <div class="panel">
-                <div class="panel-title">{{ __('TRAD_416') }}</div>
-                <strong>{{ __('TRAD_417') }}</strong> {{ $dateContrat }}<br>
-                <strong>{{ __('TRAD_418') }}</strong> {{ $numeroContrat }}<br>
-                <strong>{{ __('TRAD_419') }}</strong> {{ SITE_NAME }}
+                <div class="panel-title">{{ $contractText('TRAD_416') }}</div>
+                <strong>{{ $contractText('TRAD_417') }}</strong> {{ $dateContrat }}<br>
+                <strong>{{ $contractText('TRAD_418') }}</strong> {{ $numeroContrat }}<br>
+                <strong>{{ $contractText('TRAD_419') }}</strong> {{ SITE_NAME }}
             </div>
         </td>
     </tr>
 </table>
 
 <div class="section">
-    <div class="section-title">{{ __('TRAD_420') }}</div>
+    <div class="section-title">{{ $contractText('TRAD_420') }}</div>
     <div class="box">
-        <strong>{{ __('TRAD_421') }}</strong><br>
+        <strong>{{ $contractText('TRAD_421') }}</strong><br>
         {{ SITE_NAME }}<br>
         {{ SITE_ADDRESS }}<br>
         {{ SITE_EMAIL }}<br><br>
 
-        <strong>{{ __('TRAD_422') }}</strong><br>
+        <strong>{{ $contractText('TRAD_422') }}</strong><br>
         {{ $nomComplet }}<br>
         {{ $financing['adresse_complete'] ?? '-' }}, {{ $financing['adresse_pays'] ?? '-' }}<br>
-        {{ __('TRAD_423') }} {{ $financing['email'] ?? '-' }}<br>
-        {{ __('TRAD_424') }} {{ $financing['telephone'] ?? '-' }}
+        {{ $contractText('TRAD_423') }} {{ $financing['email'] ?? '-' }}<br>
+        {{ $contractText('TRAD_424') }} {{ $financing['telephone'] ?? '-' }}
     </div>
 </div>
 
 <div class="section">
-    <div class="section-title">{{ __('TRAD_425') }}</div>
+    <div class="section-title">{{ $contractText('TRAD_425') }}</div>
     <table class="financial">
         <tr>
-            <td class="label">{{ __('TRAD_426') }}</td>
+            <td class="label">{{ $contractText('TRAD_426') }}</td>
             <td>{{ $financing['montant_du_pret'] }} €</td>
-            <td class="label">{{ __('TRAD_427') }}</td>
+            <td class="label">{{ $contractText('TRAD_427') }}</td>
             <td>{{ $financing['duree_totale_du_pret'] }} {{ app()->getLocale() === 'es' ? 'meses' : 'mois' }}</td>
         </tr>
         <tr>
-            <td class="label">{{ __('TRAD_428') }}</td>
+            <td class="label">{{ $contractText('TRAD_428') }}</td>
             <td>{{ $financing['taux_TEAG'] }}</td>
-            <td class="label">{{ __('TRAD_429') }}</td>
+            <td class="label">{{ $contractText('TRAD_429') }}</td>
             <td>{{ $financing['mensualite_estimee'] }}</td>
         </tr>
         <tr>
-            <td class="label">{{ __('TRAD_430') }}</td>
+            <td class="label">{{ $contractText('TRAD_430') }}</td>
             <td colspan="3">{{ $financing['montant_total_a_rembourser'] }}</td>
         </tr>
         <tr>
-            <td class="label">{{ __('TRAD_431') }}</td>
+            <td class="label">{{ $contractText('TRAD_431') }}</td>
             <td colspan="3">{{ $frais }}</td>
         </tr>
     </table>
 </div>
 
 <div class="section">
-    <div class="section-title">{{ __('TRAD_433') }}</div>
+    <div class="section-title">{{ $contractText('TRAD_433') }}</div>
     <div class="box">
-        {{ __('TRAD_434') }}
+        {{ $contractText('TRAD_434') }}
     </div>
 </div>
 
 <div class="section">
-    <div class="section-title">{{ __('TRAD_435') }}</div>
+    <div class="section-title">{{ $contractText('TRAD_435') }}</div>
     <div class="box">
-        {{ __('TRAD_436') }}
+        {{ $contractText('TRAD_436') }}
     </div>
 </div>
 
 <div class="section">
-    <div class="section-title">{{ __('TRAD_437') }}</div>
+    <div class="section-title">{{ $contractText('TRAD_437') }}</div>
     <div class="box">
-        {{ __('TRAD_438') }}
+        {{ $contractText('TRAD_438') }}
     </div>
 </div>
 
 <div class="section">
-    <div class="section-title">{{ __('TRAD_439') }}</div>
+    <div class="section-title">{{ $contractText('TRAD_439') }}</div>
     <div class="box">
-        {{ __('TRAD_440') }}
+        {{ $contractText('TRAD_440') }}
     </div>
 </div>
 
 <div class="section">
-    <div class="section-title">{{ __('TRAD_441') }}</div>
+    <div class="section-title">{{ $contractText('TRAD_441') }}</div>
     <div class="box">
-        {{ __('TRAD_442') }}
+        {{ $contractText('TRAD_442') }}
     </div>
 </div>
 
 <div class="section">
-    <div class="section-title">{{ __('TRAD_443') }}</div>
+    <div class="section-title">{{ $contractText('TRAD_443') }}</div>
     <div class="box">
-        {{ __('TRAD_444') }}
+        {{ $contractText('TRAD_444') }}
     </div>
 </div>
 
 <div class="section">
-    <div class="section-title">{{ __('TRAD_445') }}</div>
+    <div class="section-title">{{ $contractText('TRAD_445') }}</div>
     <div class="box">
-        {{ __('TRAD_446') }}
+        {{ $contractText('TRAD_446') }}
     </div>
 </div>
 
@@ -303,7 +306,7 @@
 </table>
 
 <div class="footer">
-    {{ __('TRAD_447', ['date' => $dateContrat]) }}
+    {{ $contractText('TRAD_447', ['date' => $dateContrat]) }}
 </div>
 
 </body>

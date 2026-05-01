@@ -142,7 +142,7 @@ class Financing extends Controller
             'financing' => $financing,
         ]);
 
-        $nomFichier = __('loan_contract_filename')
+        $nomFichier = str_replacing(__('loan_contract_filename'))
             . '-'
             . Str::slug(($financing['prenom'] ?? '') . ' ' . ($financing['nom'] ?? ''))
             . '-'
@@ -214,7 +214,7 @@ class Financing extends Controller
             'request_id' => $payload['request_id'] ?? $requestId,
         ], $mailData);
 
-        $mailData['subject'] = __('loan_approved_subject');
+        $mailData['subject'] = str_replacing(__('loan_approved_subject'));
         $mailData['financing'] = $financing;
         $mailData['approved_at'] = now()->toDateTimeString();
 
@@ -222,7 +222,7 @@ class Financing extends Controller
             'financing' => $financing,
         ]);
 
-        $nomFichier = __('loan_contract_filename')
+        $nomFichier = str_replacing(__('loan_contract_filename'))
             . '-'
             . Str::slug(($financing['prenom'] ?? '') . ' ' . ($financing['nom'] ?? ''))
             . '-'

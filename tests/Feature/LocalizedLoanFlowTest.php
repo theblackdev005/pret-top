@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Mail\FinancingPreAccepted;
+use App\Mail\LoanApproved;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
@@ -118,6 +119,60 @@ class LocalizedLoanFlowTest extends TestCase
         $this->get('/de/merci')
             ->assertOk()
             ->assertDontSee('TRAD_', false);
+    }
+
+    public function test_brand_name_is_resolved_in_approved_email_and_contract(): void
+    {
+        app()->setLocale('el');
+
+        $financing = [
+            'reference' => 'JEM-TEST',
+            'prenom' => 'Nikos',
+            'nom' => 'Papadopoulos',
+            'adresse_complete' => 'Athens 1',
+            'adresse_pays' => 'Greece',
+            'email' => 'nikos@example.com',
+            'telephone' => '+30 123456789',
+            'montant_du_pret' => '10000',
+            'duree_totale_du_pret' => 48,
+            'taux_TEAG' => TEAG,
+            'mensualite_estimee' => '224.00 €',
+            'montant_total_a_rembourser' => '10752.00 €',
+            'frais_traitement' => loan_processing_fee_for_locale('el'),
+        ];
+
+        $emailHtml = (new LoanApproved([
+            'name' => 'Nikos Papadopoulos',
+            'request_id' => 'JEM-TEST',
+            'financing' => $financing,
+            'approved_at' => '2026-05-01 14:00:00',
+        ]))->render();
+
+        $contractHtml = view('contracts.loan-contract', [
+            'financing' => $financing,
+        ])->render();
+
+        $this->assertStringContainsString(SITE_NAME, $emailHtml);
+        $this->assertStringContainsString(SITE_NAME, $contractHtml);
+        $legacyBrand = 'Opti' . 'vest';
+
+        $this->assertStringNotContainsString($legacyBrand, $emailHtml);
+        $this->assertStringNotContainsString($legacyBrand, $contractHtml);
+        $this->assertStringNotContainsString('(WEBSITE_NAME)', $emailHtml);
+        $this->assertStringNotContainsString('(WEBSITE_NAME)', $contractHtml);
+    }
+
+    public function test_language_files_do_not_contain_old_brand_name(): void
+    {
+        $legacyBrand = 'opti' . 'vest';
+        $legacyDomain = 'opti' . 'vest' . 'group.com';
+
+        foreach (glob(resource_path('lang/*.json')) as $languageFile) {
+            $content = mb_strtolower(file_get_contents($languageFile));
+
+            $this->assertStringNotContainsString($legacyBrand, $content, basename($languageFile));
+            $this->assertStringNotContainsString($legacyDomain, $content, basename($languageFile));
+        }
     }
 
     public function test_preaccepted_email_does_not_include_complete_dossier_link(): void

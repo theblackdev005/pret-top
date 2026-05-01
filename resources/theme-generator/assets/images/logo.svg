@@ -1,3 +1,3 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="5101" height="1324" viewBox="0 0 5101 1324" fill="none">
-  <image width="5101" height="1324" href="data:image/png;base64,$(base64 -i "/Users/Apple/Downloads/optivest (1).png" | tr -d '\n')"/>
+  <image width="5101" height="1324" href="data:image/png;base64,$(base64 -i "/Users/Apple/Downloads/site-logo.png" | tr -d '\n')"/>
 </svg>

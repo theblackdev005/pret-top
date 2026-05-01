@@ -2,7 +2,7 @@
 
 @section('content')
 
-<!-- HERO FINAL OPTIVEST -->
+<!-- HERO FINAL -->
 <section class="jp-final-hero">
     <div class="jp-final-overlay"></div>
 
@@ -31,7 +31,7 @@
             <!-- RIGHT IMAGE -->
             <div class="col-lg-6">
                 <div class="jp-final-image">
-                    <img src="{{ asset_img('slider/style1/h1-1.jpg') }}" alt="Optivest financement">
+                    <img src="{{ asset_img('slider/style1/h1-1.jpg') }}" alt="{{ SITE_NAME }} financement">
                 </div>
             </div>
 

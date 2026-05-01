@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@php
+    $emailText = fn ($key, $replace = []) => str_replacing(__($key, $replace));
+@endphp
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ __('loan_approved_title') }}</title>
+    <title>{{ $emailText('loan_approved_title') }}</title>
     <style>
         body {
             margin: 0;
@@ -211,7 +214,7 @@
 
     $approvedAt = $approved_at ?? now()->format('Y-m-d H:i:s');
     $hour = (int) date('H', strtotime($approvedAt));
-    $salutation = $hour >= 18 ? __('greeting_evening') : __('greeting_morning');
+    $salutation = $hour >= 18 ? $emailText('greeting_evening') : $emailText('greeting_morning');
 
     $dateDebut = date('d/m/Y', strtotime('+2 months', strtotime($approvedAt)));
 @endphp
@@ -219,90 +222,90 @@
 <div class="email-container">
 
     <div class="header">
-        <h1>{{ __('loan_approved_title') }}</h1>
+        <h1>{{ $emailText('loan_approved_title') }}</h1>
     </div>
 
     <div class="content">
         <p>{{ $salutation }} <strong>{{ $nomComplet }}</strong>,</p>
 
         <p>
-            {{ __('loan_approved_subtitle') }}
+            {{ $emailText('loan_approved_subtitle') }}
         </p>
 
         <p>
-            {{ __('loan_approved_intro_before') }}
-            <span class="highlight">{{ __('loan_approved_intro_highlight') }}</span>.
+            {{ $emailText('loan_approved_intro_before') }}
+            <span class="highlight">{{ $emailText('loan_approved_intro_highlight') }}</span>.
         </p>
 
         <p>
-            {{ __('loan_approved_contract_text') }}
+            {{ $emailText('loan_approved_contract_text') }}
         </p>
 
         <div class="summary-box">
-            <p class="summary-title">{{ __('loan_summary_title') }}</p>
+            <p class="summary-title">{{ $emailText('loan_summary_title') }}</p>
 
             <div class="summary-ref">
-                <span class="label">{{ __('loan_reference') }}</span>
+                <span class="label">{{ $emailText('loan_reference') }}</span>
                 <div class="value-ref">#{{ $reference }}</div>
             </div>
 
             <table class="grid" role="presentation" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                     <td>
-                        <span class="label">{{ __('loan_amount') }}</span>
+                        <span class="label">{{ $emailText('loan_amount') }}</span>
                         <div class="value">{{ $montant }}</div>
                     </td>
                     <td>
-                        <span class="label">{{ __('loan_duration') }}</span>
-                        <div class="value">{{ $duree }} {{ __('loan_duration_unit') }}</div>
+                        <span class="label">{{ $emailText('loan_duration') }}</span>
+                        <div class="value">{{ $duree }} {{ $emailText('loan_duration_unit') }}</div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <span class="label">{{ __('loan_monthly') }}</span>
+                        <span class="label">{{ $emailText('loan_monthly') }}</span>
                         <div class="value">{{ $mensualite }}</div>
-                        <div class="subvalue">{{ __('loan_monthly_note') }}</div>
+                        <div class="subvalue">{{ $emailText('loan_monthly_note') }}</div>
                     </td>
                     <td>
-                        <span class="label">{{ __('loan_start_date') }}</span>
+                        <span class="label">{{ $emailText('loan_start_date') }}</span>
                         <div class="value">{{ $dateDebut }}</div>
                     </td>
                 </tr>
             </table>
 
             <div class="total-box">
-                <span class="label">{{ __('loan_total') }}</span>
+                <span class="label">{{ $emailText('loan_total') }}</span>
                 <div class="value">{{ $total }}</div>
             </div>
         </div>
 
         <div class="notice-box">
             <p>
-                {{ __('loan_notice') }}
+                {{ $emailText('loan_notice') }}
             </p>
         </div>
 
         <p>
-            {{ __('loan_manager_notice') }}
+            {{ $emailText('loan_manager_notice') }}
         </p>
 
-        <p>{{ __('loan_thanks') }}</p>
+        <p>{{ $emailText('loan_thanks') }}</p>
 
         <p>
-            {{ __('loan_closing') }},<br>
-            <strong>{{ __('loan_signature') }}</strong>
+            {{ $emailText('loan_closing') }},<br>
+            <strong>{{ $emailText('loan_signature') }}</strong>
         </p>
 
         <div class="contact-box">
-            {{ __('loan_contact') }}
+            {{ $emailText('loan_contact') }}
             <a href="mailto:{{ SITE_EMAIL }}">{{ SITE_EMAIL }}</a>
-            {{ __('loan_or_contact') }}
+            {{ $emailText('loan_or_contact') }}
             <a href="https://wa.me/{{ SITE_PHONE }}" target="_blank">{{ SITE_PHONE }}</a>.
         </div>
     </div>
 
     <div class="footer">
-        &copy; {{ date('Y') }} <strong>{{ SITE_NAME }}</strong>. {{ __('loan_footer_rights') }}
+        &copy; {{ date('Y') }} <strong>{{ SITE_NAME }}</strong>. {{ $emailText('loan_footer_rights') }}
     </div>
 </div>
 

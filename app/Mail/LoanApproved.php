@@ -19,7 +19,7 @@ class LoanApproved extends Mailable
 
     public function build()
     {
-        return $this->subject($this->data['subject'] ?? 'Votre demande de financement a été acceptée')
+        return $this->subject(str_replacing($this->data['subject'] ?? 'Votre demande de financement a été acceptée'))
             ->view('emails.loan-approved')
             ->with([
                 'financing' => $this->data['financing'] ?? [],
