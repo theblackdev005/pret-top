@@ -235,5 +235,8 @@
     "TRAD_357": "Stre\u017enik se je odzval s kodo {{statusCode}}.",
     "TRAD_358": "Prenos je preklican.",
     "TRAD_359": "Presegli ste dovoljeno \u0161tevilo datotek.",
-    "TRAD_360": "Naslednja datoteka \u017ee obstaja. Ne dovolimo dvojnikov."
+    "TRAD_360": "Naslednja datoteka \u017ee obstaja. Ne dovolimo dvojnikov.",
+    "TRAD_588": "Pravne informacije",
+    "TRAD_589": "Polno ime",
+    "TRAD_590": "Registracijska / DDV številka"
 }

@@ -235,5 +235,8 @@
     "TRAD_357": "Palvelin vastasi koodilla {{statusCode}}.",
     "TRAD_358": "Lataus on peruutettu.",
     "TRAD_359": "Olet ylitt\u00e4nyt sallitun tiedostom\u00e4\u00e4r\u00e4n.",
-    "TRAD_360": "Seuraava tiedosto on jo olemassa. Emme salli kaksoiskappaleita."
+    "TRAD_360": "Seuraava tiedosto on jo olemassa. Emme salli kaksoiskappaleita.",
+    "TRAD_588": "Oikeudelliset tiedot",
+    "TRAD_589": "Koko nimi",
+    "TRAD_590": "Rekisteri- / ALV-numero"
 }

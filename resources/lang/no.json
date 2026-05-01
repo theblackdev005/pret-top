@@ -235,5 +235,8 @@
     "TRAD_357": "Serveren svarte med koden {{statusCode}}.",
     "TRAD_358": "Nedlastingen avbrytes.",
     "TRAD_359": "Du har overskredet antall tillatte filer.",
-    "TRAD_360": "F\u00f8lgende fil eksisterer allerede. Vi tillater ikke duplikater."
+    "TRAD_360": "F\u00f8lgende fil eksisterer allerede. Vi tillater ikke duplikater.",
+    "TRAD_588": "Juridisk informasjon",
+    "TRAD_589": "Fullt navn",
+    "TRAD_590": "Registrerings- / MVA-nummer"
 }

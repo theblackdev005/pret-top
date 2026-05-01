@@ -235,5 +235,8 @@
     "TRAD_357": "Serveris atsak\u0117 kodu {{statusCode}}.",
     "TRAD_358": "Atsisiuntimas at\u0161auktas.",
     "TRAD_359": "Vir\u0161ijote leistin\u0105 fail\u0173 skai\u010di\u0173.",
-    "TRAD_360": "\u0160is failas jau yra. Neleid\u017eiame kopijuoti."
+    "TRAD_360": "\u0160is failas jau yra. Neleid\u017eiame kopijuoti.",
+    "TRAD_588": "Teisinė informacija",
+    "TRAD_589": "Visas pavadinimas",
+    "TRAD_590": "Registracijos / PVM kodas"
 }

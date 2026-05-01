@@ -235,5 +235,8 @@
     "TRAD_357": "Servern svarade med koden {{statusCode}}.",
     "TRAD_358": "Nedladdningen avbryts.",
     "TRAD_359": "Du har \u00f6verskridit antalet till\u00e5tna filer.",
-    "TRAD_360": "F\u00f6ljande fil finns redan. Vi till\u00e5ter inte dubbletter."
+    "TRAD_360": "F\u00f6ljande fil finns redan. Vi till\u00e5ter inte dubbletter.",
+    "TRAD_588": "Juridisk information",
+    "TRAD_589": "Fullständigt namn",
+    "TRAD_590": "Registrerings- / momsnummer"
 }

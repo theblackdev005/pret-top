@@ -94,6 +94,28 @@ class LocalizedLoanFlowTest extends TestCase
         $this->assertStringContainsString(LOAN_PROCESSING_FEE, $html);
     }
 
+    public function test_legal_notice_shows_legal_information_from_constants(): void
+    {
+        $response = $this->get('/fr/legal/legal-notice');
+
+        $response->assertOk()
+            ->assertSee('Informations légales', false)
+            ->assertSee('Nom complet', false)
+            ->assertSee(LEGAL_FULL_NAME, false);
+
+        if (trim(LEGAL_REGISTRATION_OR_VAT_NUMBER) !== '') {
+            $response->assertSee("Numéro d'enregistrement / TVA")
+                ->assertSee(LEGAL_REGISTRATION_OR_VAT_NUMBER, false);
+        }
+
+        $this->get('/en/legal/legal-notice')
+            ->assertOk()
+            ->assertSee('Legal information', false)
+            ->assertSee('Full name', false)
+            ->assertSee('Registration / VAT number', false)
+            ->assertDontSee('Informations légales', false);
+    }
+
     public function test_polish_loan_submission_redirects_to_localized_thank_you(): void
     {
         Mail::fake();

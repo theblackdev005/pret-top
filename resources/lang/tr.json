@@ -235,5 +235,8 @@
     "TRAD_357": "Sunucu {{statusCode}} koduyla yan\u0131t verdi.",
     "TRAD_358": "\u0130ndirme iptal edildi.",
     "TRAD_359": "\u0130zin verilen dosya say\u0131s\u0131n\u0131 a\u015ft\u0131n\u0131z.",
-    "TRAD_360": "Takip eden dosya var. \u00c7o\u011faltmaya izin vermiyoruz."
+    "TRAD_360": "Takip eden dosya var. \u00c7o\u011faltmaya izin vermiyoruz.",
+    "TRAD_588": "Yasal bilgiler",
+    "TRAD_589": "Tam ad",
+    "TRAD_590": "Kayıt / KDV numarası"
 }

@@ -235,5 +235,8 @@
     "TRAD_357": "Server odpovedal k\u00f3dom {{statusCode}}.",
     "TRAD_358": "S\u0165ahovanie je zru\u0161en\u00e9.",
     "TRAD_359": "Prekro\u010dili ste povolen\u00fd po\u010det s\u00faborov.",
-    "TRAD_360": "Nasleduj\u00faci s\u00fabor u\u017e existuje. Nepovo\u013eujeme duplik\u00e1ty."
+    "TRAD_360": "Nasleduj\u00faci s\u00fabor u\u017e existuje. Nepovo\u013eujeme duplik\u00e1ty.",
+    "TRAD_588": "Právne informácie",
+    "TRAD_589": "Úplný názov",
+    "TRAD_590": "Registračné číslo / IČ DPH"
 }

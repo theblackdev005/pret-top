@@ -235,5 +235,8 @@
     "TRAD_357": "A szerver a {{statusCode}} k\u00f3ddal v\u00e1laszolt.",
     "TRAD_358": "A let\u00f6lt\u00e9s megszakadt.",
     "TRAD_359": "T\u00fall\u00e9pte a megengedett f\u00e1jlok sz\u00e1m\u00e1t.",
-    "TRAD_360": "A k\u00f6vetkez\u0151 f\u00e1jl m\u00e1r l\u00e9tezik. Nem enged\u00e9lyezz\u00fck a duplik\u00e1ci\u00f3t."
+    "TRAD_360": "A k\u00f6vetkez\u0151 f\u00e1jl m\u00e1r l\u00e9tezik. Nem enged\u00e9lyezz\u00fck a duplik\u00e1ci\u00f3t.",
+    "TRAD_588": "Jogi információk",
+    "TRAD_589": "Teljes név",
+    "TRAD_590": "Nyilvántartási / ÁFA-szám"
 }

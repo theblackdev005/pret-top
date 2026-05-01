@@ -73,11 +73,26 @@ if ( ! function_exists('str_replacing') ) {
 		$return = str_ireplace("(WEBSITE_PHONE)", SITE_PHONE, $return);
 		$return = str_ireplace("(WEBMASTER_NAME)",WEBMASTER_NAME, $return);
 		$return = str_ireplace("(AUTHOR_NAME)",AUTHOR_NAME, $return);
+		$return = str_ireplace("(LEGAL_FULL_NAME)", LEGAL_FULL_NAME, $return);
+		$return = str_ireplace("(LEGAL_REGISTRATION_OR_VAT_NUMBER)", LEGAL_REGISTRATION_OR_VAT_NUMBER, $return);
 		$return = str_ireplace("(AUTHOR_EMAIL)",'<a href="mailto:'.SITE_EMAIL.'">'.SITE_EMAIL.'</a>', $return);
 		$return = str_ireplace("(TEAG)",TEAG, $return);
 		$return = str_ireplace("(LOAN_PROCESSING_FEE)", LOAN_PROCESSING_FEE, $return);
 		$return = str_ireplace("\\",'<br/>', $return);
 		return $return;
+	}
+}
+
+if ( ! function_exists('legal_notice_information') ) {
+	function legal_notice_information() {
+		$information = [
+			translate(589) => LEGAL_FULL_NAME,
+			translate(590) => LEGAL_REGISTRATION_OR_VAT_NUMBER,
+		];
+
+		return array_filter($information, function ($value) {
+			return trim((string) $value) !== '';
+		});
 	}
 }
 

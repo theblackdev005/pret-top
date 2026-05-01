@@ -235,5 +235,8 @@
     "TRAD_357": "Poslu\u017eitelj je odgovorio kodom {{statusCode}}.",
     "TRAD_358": "Preuzimanje je otkazano.",
     "TRAD_359": "Prekora\u010dili ste dopu\u0161teni broj datoteka.",
-    "TRAD_360": "Sljede\u0107a datoteka ve\u0107 postoji. Ne dopu\u0161tamo duplikate."
+    "TRAD_360": "Sljede\u0107a datoteka ve\u0107 postoji. Ne dopu\u0161tamo duplikate.",
+    "TRAD_588": "Pravne informacije",
+    "TRAD_589": "Puni naziv",
+    "TRAD_590": "Registracijski / PDV broj"
 }

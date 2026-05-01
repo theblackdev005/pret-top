@@ -235,5 +235,8 @@
     "TRAD_357": "Server odpov\u011bd\u011bl k\u00f3dem {{statusCode}}.",
     "TRAD_358": "Stahov\u00e1n\u00ed je zru\u0161eno.",
     "TRAD_359": "P\u0159ekro\u010dili jste povolen\u00fd po\u010det soubor\u016f.",
-    "TRAD_360": "N\u00e1sleduj\u00edc\u00ed soubor ji\u017e existuje. Nepovolujeme duplik\u00e1ty."
+    "TRAD_360": "N\u00e1sleduj\u00edc\u00ed soubor ji\u017e existuje. Nepovolujeme duplik\u00e1ty.",
+    "TRAD_588": "Právní informace",
+    "TRAD_589": "Úplný název",
+    "TRAD_590": "Registrační číslo / DIČ"
 }

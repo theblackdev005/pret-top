@@ -235,5 +235,8 @@
     "TRAD_357": "Serveris atbild\u0113ja ar kodu {{statusCode}}.",
     "TRAD_358": "Lejupiel\u0101de ir atcelta.",
     "TRAD_359": "J\u016bs esat p\u0101rsniedzis at\u013cauto failu skaitu.",
-    "TRAD_360": "\u0160is fails jau past\u0101v. M\u0113s neat\u013caujam dublik\u0101tus."
+    "TRAD_360": "\u0160is fails jau past\u0101v. M\u0113s neat\u013caujam dublik\u0101tus.",
+    "TRAD_588": "Juridiskā informācija",
+    "TRAD_589": "Pilns nosaukums",
+    "TRAD_590": "Reģistrācijas / PVN numurs"
 }

@@ -235,5 +235,8 @@
     "TRAD_357": "Serveren svarede med koden {{statusCode}}.",
     "TRAD_358": "Downloaden er annulleret.",
     "TRAD_359": "Du har overskredet det tilladte antal filer.",
-    "TRAD_360": "F\u00f8lgende fil eksisterer allerede. Vi tillader ikke dubletter."
+    "TRAD_360": "F\u00f8lgende fil eksisterer allerede. Vi tillader ikke dubletter.",
+    "TRAD_588": "Juridiske oplysninger",
+    "TRAD_589": "Fuldt navn",
+    "TRAD_590": "Registrerings- / momsnummer"
 }

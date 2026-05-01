@@ -235,5 +235,8 @@
     "TRAD_357": "Server vastas koodiga {{statusCode}}.",
     "TRAD_358": "Allalaadimine on t\u00fchistatud.",
     "TRAD_359": "Olete \u00fcletanud lubatud failide arvu.",
-    "TRAD_360": "J\u00e4rgmine fail on juba olemas. Me ei luba duplikaate."
+    "TRAD_360": "J\u00e4rgmine fail on juba olemas. Me ei luba duplikaate.",
+    "TRAD_588": "Õiguslik teave",
+    "TRAD_589": "Täielik nimi",
+    "TRAD_590": "Registreerimisnumber / käibemaksukohustuslase number"
 }

@@ -235,5 +235,8 @@
     "TRAD_357": "Serverul a r\u0103spuns cu codul {{statusCode}}.",
     "TRAD_358": "Desc\u0103rcarea este anulat\u0103.",
     "TRAD_359": "A\u021bi dep\u0103\u0219it num\u0103rul de fi\u0219iere permis.",
-    "TRAD_360": "Urm\u0103torul fi\u0219ier exist\u0103 deja. Nu permitem duplicate."
+    "TRAD_360": "Urm\u0103torul fi\u0219ier exist\u0103 deja. Nu permitem duplicate.",
+    "TRAD_588": "Informații legale",
+    "TRAD_589": "Nume complet",
+    "TRAD_590": "Număr de înregistrare / TVA"
 }

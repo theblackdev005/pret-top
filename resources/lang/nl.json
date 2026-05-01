@@ -235,5 +235,8 @@
     "TRAD_357": "De server reageerde met de code {{statusCode}}.",
     "TRAD_358": "Het downloaden wordt geannuleerd.",
     "TRAD_359": "U heeft het toegestane aantal bestanden overschreden.",
-    "TRAD_360": "Het volgende bestand bestaat al. We staan \u200b\u200bgeen duplicaten toe."
+    "TRAD_360": "Het volgende bestand bestaat al. We staan \u200b\u200bgeen duplicaten toe.",
+    "TRAD_588": "Juridische informatie",
+    "TRAD_589": "Volledige naam",
+    "TRAD_590": "Registratie- / btw-nummer"
 }
